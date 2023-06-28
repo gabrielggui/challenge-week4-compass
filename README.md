@@ -48,3 +48,8 @@ Além da classe base “Veiculo” você deverá implementar as seguintes classe
   * Atributos adicionais:
     * Possui ar condicionado
     * Possui radio
+  
+### Recursos extras implementados
+* ✅ Cadastro de veículos (em memória)
+* ✅ Listagem de veículos
+* ✅ Exportação de dados em CSV
