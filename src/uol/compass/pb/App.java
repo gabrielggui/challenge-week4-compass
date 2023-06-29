@@ -66,27 +66,31 @@ public class App {
     }
 
     private static void saveListToCSV() {
-    	System.out.println("-> Select the directory <-");
+        System.out.println("-> Select the directory <-");
         String path = selectDirectory();
-        SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd HH-mm-ss-S");
-        String fileName = path + "\\Vehicles - " + date.format(new Date()) + ".csv";
+        if (path != null) {
+            SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd HH-mm-ss-S");
+            String fileName = path + "\\Vehicles - " + date.format(new Date()) + ".csv";
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 
-            for (Vehicle vehicle : vehicles) {
-                writer.write(vehicle.toCSV() + "\n");
+                for (Vehicle vehicle : vehicles) {
+                    writer.write(vehicle.toCSV() + "\n");
+                }
+
+                System.out.println("File saved successfully!");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            
-            System.out.println("File saved successfully!");
-        } catch (IOException e) {
-            e.printStackTrace();
+        }else{
+            System.out.println("Directory not selected");
         }
     }
 
     private static String selectDirectory() {
         JFrame frame = new JFrame();
         frame.setAlwaysOnTop(true);
-        
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
